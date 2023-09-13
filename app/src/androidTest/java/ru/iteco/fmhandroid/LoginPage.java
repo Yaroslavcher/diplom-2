@@ -1,6 +1,4 @@
-package page;
-
-import ru.iteco.fmhandroid.R;
+package ru.iteco.fmhandroid;
 
 public class LoginPage extends EspressoBaseTest {
     public static int getLoginInputId() {

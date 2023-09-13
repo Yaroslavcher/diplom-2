@@ -1,6 +1,7 @@
-package data;
+package ru.iteco.fmhandroid;
 
 public class DataHelper {
+
 /*    public static class AuthInfo {*/
         String login = "login2";
         String password = "password2";
