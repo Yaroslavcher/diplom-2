@@ -45,6 +45,10 @@ android {
             buildConfigField "String", "BASE_URL", '"http://www.981757-ca08998.tmweb.ru:8080/fmh/"'
         }
     }
+
+    testOptions {
+        animationsDisabled true
+    }
 }
 
 dependencies {
