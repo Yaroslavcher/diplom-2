@@ -29,6 +29,7 @@ import org.junit.runner.RunWith;
 
 import java.util.concurrent.TimeoutException;
 
+import pages.LoginPage;
 import ru.iteco.fmhandroid.ui.AppActivity;
 
 @RunWith(AndroidJUnit4.class)

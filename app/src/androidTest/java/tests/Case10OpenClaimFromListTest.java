@@ -6,12 +6,14 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withParent;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
+import static ru.iteco.fmhandroid.EspressoBaseTest.waitDisplayed;
 
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,24 +28,39 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 import org.hamcrest.core.IsInstanceOf;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import pages.Logged;
+import pages.LoginPage;
 import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.ui.AppActivity;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class Case10OpenClaimFromListTest {
+public class Case10OpenClaimFromListTest extends TestBase {
 
+    Logged logged = new Logged();
+    LoginPage loginPage = new LoginPage();
     @Rule
     public ActivityScenarioRule<AppActivity> mActivityScenarioRule =
             new ActivityScenarioRule<>(AppActivity.class);
 
+    @Before
+    public void setUp() {
+        onView(isRoot()).perform(waitDisplayed(R.id.login_text_input_layout, 5000));
+        try {
+            logged.loggedIn();
+        }
+        catch (AssertionError e) {
+            loginPage.login();
+        }
+
+    }
     @Test
     public void case10OpenClaimFromListTest() {
-
 
         ViewInteraction materialTextView = onView(
                 allOf(withId(R.id.all_claims_text_view), withText("all claims"),
@@ -148,7 +165,7 @@ public class Case10OpenClaimFromListTest {
         cardView.check(matches(isDisplayed()));
     }
 
-    private static Matcher<View> childAtPosition(
+/*    private static Matcher<View> childAtPosition(
             final Matcher<View> parentMatcher, final int position) {
 
         return new TypeSafeMatcher<View>() {
@@ -165,5 +182,5 @@ public class Case10OpenClaimFromListTest {
                         && view.equals(((ViewGroup) parent).getChildAt(position));
             }
         };
-    }
+    }*/
 }

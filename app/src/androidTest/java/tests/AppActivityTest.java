@@ -27,13 +27,12 @@ import org.hamcrest.core.IsInstanceOf;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import ru.iteco.fmhandroid.LoginPage;
+import pages.LoginPage;
 import ru.iteco.fmhandroid.R;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class AppActivityTest extends TestBase {
-
 
 
     @Test
@@ -122,3 +121,4 @@ public class AppActivityTest extends TestBase {
         };
     }
 }
+*/
