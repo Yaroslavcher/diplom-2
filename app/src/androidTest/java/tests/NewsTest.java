@@ -10,22 +10,15 @@ import org.junit.runner.RunWith;
 
 import io.qameta.allure.kotlin.Description;
 import io.qameta.allure.kotlin.junit4.DisplayName;
-import pages.ClaimPage;
-import pages.DetailedClaimPage;
 import pages.Logged;
 import pages.LoginPage;
+import pages.NewsPage;
 import ru.iteco.fmhandroid.ui.AppActivity;
-import utils.EspressoBaseTest;
 
 @RunWith(AndroidJUnit4.class)
-public class NewsTest extends EspressoBaseTest {
+public class NewsTest extends NewsPage {
     Logged logged = new Logged();
     LoginPage loginPage = new LoginPage();
-    ClaimPage claimPage = new ClaimPage();
-    DetailedClaimPage detailedClaimPage = new DetailedClaimPage();
-
-    String date = getCurrentDate();
-    String time = getCurrentTime();
 
     @Rule
     public ActivityScenarioRule<AppActivity> mActivityScenarioRule =
@@ -44,10 +37,27 @@ public class NewsTest extends EspressoBaseTest {
 
     @Test
     @DisplayName("45.Создание новости")
-    @Description("Откроется карточка \"Объявление\" с датой публикации и датой создания и автором, равными текущей дате и автору соответственно, и описанием \"тест\"")
-    public void createNews() {
+    @Description("Сохранится карточка в категории \"Объявление\" с датой публикации и датой создания и автором, равными текущей дате и автору соответственно, и наименованием yaroslavcher и описанием \"test\"")
+    public void shouldCreateNews() {
         tapHamburger(menu_item);
-
+        checkEdit();
+        createNews();
+    }
+    @Test
+    @DisplayName("46.Удалание новости")
+    @Description("Первая карточка исчезнет и остальные карточки сместятся вверх")
+    public void shouldDeleteNews() {
+        tapHamburger(menu_item);
+        checkEdit();
+        deleteNews();
+    }
+    @Test
+    @DisplayName("50.Отмена создания новости")
+    @Description("Откроется окно подтверждения выхода без сохранения создаваемой новости")
+    public void shouldNotCreateNews() {
+        tapHamburger(menu_item);
+        checkEdit();
+        notCreateNews();
     }
 
 }
