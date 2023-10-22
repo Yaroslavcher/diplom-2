@@ -3,12 +3,19 @@ package tests;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static androidx.test.espresso.action.ViewActions.replaceText;
+import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isNotFocusable;
+import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
+import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.is;
 
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
@@ -22,17 +29,20 @@ import org.junit.runner.RunWith;
 import io.qameta.allure.kotlin.Description;
 import io.qameta.allure.kotlin.junit4.DisplayName;
 import pages.ClaimPage;
+import pages.DetailedClaimPage;
 import pages.Logged;
 import pages.LoginPage;
 import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.ui.AppActivity;
 import utils.EspressoBaseTest;
+import utils.EspressoHelper;
 
 @RunWith(AndroidJUnit4.class)
 public class ClaimsTest extends EspressoBaseTest {
     Logged logged = new Logged();
     LoginPage loginPage = new LoginPage();
     ClaimPage claimPage = new ClaimPage();
+    DetailedClaimPage detailedClaimPage = new DetailedClaimPage();
 
     String date = getCurrentDate();
     String time = getCurrentTime();
@@ -48,10 +58,9 @@ public class ClaimsTest extends EspressoBaseTest {
         catch (AssertionError e) {
             loginPage.login();
         }
-
     }
 
-    String text = "Claims";
+    String menu_item = "Claims";
 
     @Test
     @DisplayName("9.Minimize and maximize the claims list")
@@ -171,8 +180,72 @@ public class ClaimsTest extends EspressoBaseTest {
     @DisplayName("19.Добавление комментария к заявке")
     @Description("Появится введенный комментарий внизу карточки заявки с указанием имени, под которым был вход в приложение, текущей даты и времени добавления коментария")
     public void addComment() {
-        checkMenuButton(text);
+/*        checkMenuButton(text);
         claimPage.fullInfoAboutClaims();
-        claimPage.addComment();
+        claimPage.addComment();*/
+        claimPage.fullInfoAboutClaim();
     }
+
+    @Test
+    @DisplayName("20.Изменение комментария к заявке")
+    @Description("Появится комментарий \"edit\" внизу карточки с указанием имени, под которым был добавлен комментарий, даты и времени добавления коментария")
+    public void editComment() {
+        String edit = "edit";
+        clickAllOfChild(R.id.claim_list_recycler_view, R.id.all_claims_cards_block_constraint_layout, 4, 0);
+
+        ViewInteraction appCompatImageButton = onView(
+                allOf(withId(R.id.edit_comment_image_button), withContentDescription("button edit comment"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.claim_comments_list_recycler_view),
+                                        0),
+                                1),
+                        isDisplayed()));
+        appCompatImageButton.perform(click());
+
+        ViewInteraction textInputEditText5 = onView(
+                allOf(childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.comment_text_input_layout),
+                                        0),
+                                1),
+                        isDisplayed()));
+        textInputEditText5.perform(replaceText(edit));
+
+        ViewInteraction textInputEditText6 = onView(
+                allOf(withText("edit"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.comment_text_input_layout),
+                                        0),
+                                1),
+                        isDisplayed()));
+        textInputEditText6.perform(closeSoftKeyboard());
+
+        ViewInteraction materialButton4 = onView(
+                allOf(withId(R.id.save_button), withText("Save"), withContentDescription("Save"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("com.google.android.material.card.MaterialCardView")),
+                                        0),
+                                1)));
+        materialButton4.perform(scrollTo(), click());
+        elementWaiting(withId(R.id.add_comment_image_button), 3000);
+        onView(withId(R.id.claim_comments_list_recycler_view))
+                .check(matches(hasDescendant(allOf(
+                        withId(R.id.comment_description_text_view),
+                        withText(edit)))));
+    }
+    @Test
+    @DisplayName("21.Отказ в сохранении пустого комментария")
+    @Description("Появится сообщение, что поле не может быть пустым")
+    public void shouldNotAddEmptyComment() {
+        tapHamburger(menu_item);
+        detailedClaimPage.detailedClaim();
+        claimPage.clickAddCommentInputText("");
+        onView(withText(R.string.toast_empty_field)).inRoot(new EspressoHelper.ToastMatcher())
+                .check(matches(withText("The field cannot be empty.")));
+    }
+
+
 }
