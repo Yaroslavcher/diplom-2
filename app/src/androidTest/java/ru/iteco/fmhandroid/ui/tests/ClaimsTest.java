@@ -1,4 +1,4 @@
-package tests;
+package ru.iteco.fmhandroid.ui.tests;
 
 
 import static androidx.test.espresso.Espresso.onView;
@@ -19,25 +19,25 @@ import static org.hamcrest.Matchers.is;
 
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import io.qameta.allure.android.runners.AllureAndroidJUnit4;
 import io.qameta.allure.kotlin.Description;
 import io.qameta.allure.kotlin.junit4.DisplayName;
-import pages.ClaimPage;
-import pages.DetailedClaimPage;
-import pages.Logged;
-import pages.LoginPage;
+import ru.iteco.fmhandroid.ui.pages.ClaimPage;
+import ru.iteco.fmhandroid.ui.pages.DetailedClaimPage;
+import ru.iteco.fmhandroid.ui.pages.Logged;
+import ru.iteco.fmhandroid.ui.pages.LoginPage;
 import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.ui.AppActivity;
-import utils.EspressoBaseTest;
-import utils.EspressoHelper;
+import ru.iteco.fmhandroid.ui.utils.EspressoBaseTest;
+import ru.iteco.fmhandroid.ui.utils.EspressoHelper;
 
-@RunWith(AndroidJUnit4.class)
+@RunWith(AllureAndroidJUnit4.class)
 public class ClaimsTest extends EspressoBaseTest {
     Logged logged = new Logged();
     LoginPage loginPage = new LoginPage();
@@ -97,7 +97,7 @@ public class ClaimsTest extends EspressoBaseTest {
                         isDisplayed()));
         textView.check(matches(isDisplayed()));*/
 
-        checkByIdNoWait(R.id.title_label_text_view);
+        checkById(R.id.title_label_text_view);
         checkByIdNoWait(R.id.executor_name_label_text_view);
         checkByIdNoWait(R.id.plane_date_label_text_view);
         checkByIdNoWait(R.id.status_label_text_view);

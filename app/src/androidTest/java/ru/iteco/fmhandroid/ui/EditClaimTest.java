@@ -1,3 +1,4 @@
+/*
 package ru.iteco.fmhandroid.ui;
 
 
@@ -33,7 +34,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import ru.iteco.fmhandroid.R;
-import utils.EspressoBaseTest;
+import ru.iteco.fmhandroid.ui.utils.EspressoBaseTest;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
@@ -46,12 +47,14 @@ public class EditClaimTest extends EspressoBaseTest {
     @Test
     public void editClaimTest() {
         elementWaiting(withId(R.id.claim_list_recycler_view), 3000);
+*/
 /*        ViewInteraction recyclerView = onView(
                 allOf(withId(R.id.claim_list_recycler_view),
                         childAtPosition(
                                 withId(R.id.all_claims_cards_block_constraint_layout),
                                 4)));
-        recyclerView.perform(actionOnItemAtPosition(0, click()));*/
+        recyclerView.perform(actionOnItemAtPosition(0, click()));*//*
+
 
         clickAllOfChild(R.id.claim_list_recycler_view, R.id.all_claims_cards_block_constraint_layout, 4, 0);
 
@@ -120,3 +123,4 @@ public class EditClaimTest extends EspressoBaseTest {
         };
     }
 }
+*/

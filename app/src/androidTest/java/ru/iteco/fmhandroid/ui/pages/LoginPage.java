@@ -1,4 +1,4 @@
-package pages;
+package ru.iteco.fmhandroid.ui.pages;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -8,12 +8,10 @@ import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withHint;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static utils.EspressoHelper.elementWaiting;
-import static utils.EspressoHelper.waitForElement;
 
 import androidx.test.espresso.ViewInteraction;
 
-import utils.EspressoBaseTest;
+import ru.iteco.fmhandroid.ui.utils.EspressoBaseTest;
 import ru.iteco.fmhandroid.R;
 
 public class LoginPage extends EspressoBaseTest {
@@ -93,11 +91,11 @@ public class LoginPage extends EspressoBaseTest {
 
     public void logout() {
         LoginPage loginPage = new LoginPage();
-        elementWaiting(withId(R.id.authorization_image_button), 2000);
+        elementWaiting(withId(R.id.authorization_image_button), 3000);
         clickButton(R.id.authorization_image_button);
         onView(isRoot()).perform(waitForElement(withText("Log out"), 1000));
         onView(withText("Log out")).perform(click());
-        elementWaiting(withId(R.id.enter_button), 3000);
+        elementWaiting(withId(R.id.enter_button), 2000);
         checkById(R.id.enter_button);
     }
 }

@@ -1,21 +1,24 @@
-package tests;
+package ru.iteco.fmhandroid.ui.tests;
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+import io.qameta.allure.android.runners.AllureAndroidJUnit4;
 import io.qameta.allure.kotlin.Description;
 import io.qameta.allure.kotlin.junit4.DisplayName;
-import pages.ClaimPage;
-import pages.FilterClaimPage;
-import pages.Logged;
-import pages.LoginPage;
+import ru.iteco.fmhandroid.ui.pages.ClaimPage;
+import ru.iteco.fmhandroid.ui.pages.FilterClaimPage;
+import ru.iteco.fmhandroid.ui.pages.Logged;
+import ru.iteco.fmhandroid.ui.pages.LoginPage;
 import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.ui.AppActivity;
-import utils.EspressoBaseTest;
+import ru.iteco.fmhandroid.ui.utils.EspressoBaseTest;
 
+@RunWith(AllureAndroidJUnit4.class)
 public class FilterClaimTest extends EspressoBaseTest {
     Logged logged = new Logged();
     LoginPage loginPage = new LoginPage();

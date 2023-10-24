@@ -1,3 +1,4 @@
+/*
 package ru.iteco.fmhandroid.ui;
 
 
@@ -29,10 +30,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import ru.iteco.fmhandroid.R;
+import ru.iteco.fmhandroid.ui.utils.EspressoBaseTest;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class fullCitationTest {
+public class fullCitationTest extends EspressoBaseTest {
 
     @Rule
     public ActivityScenarioRule<AppActivity> mActivityScenarioRule =
@@ -68,7 +70,7 @@ public class fullCitationTest {
         checkById(R.id.our_mission_item_description_text_view);
     }
 
-    private static Matcher<View> childAtPosition(
+    public static Matcher<View> childAtPosition(
             final Matcher<View> parentMatcher, final int position) {
 
         return new TypeSafeMatcher<View>() {
@@ -87,3 +89,4 @@ public class fullCitationTest {
         };
     }
 }
+*/

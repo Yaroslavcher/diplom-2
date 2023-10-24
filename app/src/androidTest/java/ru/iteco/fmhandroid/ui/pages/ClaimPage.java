@@ -1,4 +1,4 @@
-package pages;
+package ru.iteco.fmhandroid.ui.pages;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -15,7 +15,7 @@ import static org.hamcrest.Matchers.allOf;
 import androidx.test.espresso.ViewInteraction;
 
 import ru.iteco.fmhandroid.R;
-import utils.EspressoBaseTest;
+import ru.iteco.fmhandroid.ui.utils.EspressoBaseTest;
 
 public class ClaimPage extends EspressoBaseTest {
 

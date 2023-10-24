@@ -1,4 +1,4 @@
-package utils;
+package ru.iteco.fmhandroid.ui.utils;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -72,13 +72,13 @@ public class EspressoBaseTest extends EspressoHelper {
 
     public void checkById(Integer resourceId) {
         Allure.step("Проверка того, что отображен элемент с id: " + resourceId);
-        elementWaiting(withId(resourceId), 5000);
+        elementWaiting(withId(resourceId), 2000);
         onView(withId(resourceId)).check(matches(isDisplayed()));
     }
     public void checkByIdWithText(Integer resourceId, String text) {
         Allure.step("Проверка того, что отображен элемент с id: " + resourceId + "с текстом" + text);
         ViewInteraction textView = onView(allOf(withId(resourceId), withText(text)));
-        elementWaiting(withId(resourceId), 5000);
+        elementWaiting(withId(resourceId), 2000);
         textView.check(matches(withText(text)));
     }
 

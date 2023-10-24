@@ -1,4 +1,4 @@
-package pages;
+package ru.iteco.fmhandroid.ui.pages;
 
 import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
@@ -23,8 +23,8 @@ import androidx.test.espresso.DataInteraction;
 import androidx.test.espresso.ViewInteraction;
 
 import ru.iteco.fmhandroid.R;
-import utils.EspressoBaseTest;
-import utils.EspressoHelper;
+import ru.iteco.fmhandroid.ui.utils.EspressoBaseTest;
+import ru.iteco.fmhandroid.ui.utils.EspressoHelper;
 
 public class NewsPage extends EspressoBaseTest {
     public void checkEdit() {

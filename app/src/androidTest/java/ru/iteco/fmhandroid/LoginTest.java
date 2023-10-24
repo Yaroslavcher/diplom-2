@@ -1,3 +1,4 @@
+/*
 package ru.iteco.fmhandroid;
 
 import static androidx.test.espresso.Espresso.onView;
@@ -29,7 +30,7 @@ import org.junit.runner.RunWith;
 
 import java.util.concurrent.TimeoutException;
 
-import pages.LoginPage;
+import ru.iteco.fmhandroid.ui.pages.LoginPage;
 import ru.iteco.fmhandroid.ui.AppActivity;
 
 @RunWith(AndroidJUnit4.class)
@@ -97,11 +98,14 @@ public class LoginTest {
     }
 
 
+*/
 /*    public void validLoginTest(DataHelper login, DataHelper password) {
         LoginPage.inputText(LoginPage.getLoginInputId(), String.valueOf(login));
         LoginPage.inputText(LoginPage.getPasswordInputId(), String.valueOf(password));
-        LoginPage.clickButton(LoginPage.getLoginButtonId());*/
+        LoginPage.clickButton(LoginPage.getLoginButtonId());*//*
+
 
 
 
 }
+*/

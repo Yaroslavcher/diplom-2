@@ -1,9 +1,9 @@
-package pages;
+package ru.iteco.fmhandroid.ui.pages;
 
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
 import ru.iteco.fmhandroid.R;
-import utils.EspressoBaseTest;
+import ru.iteco.fmhandroid.ui.utils.EspressoBaseTest;
 
 public class DetailedClaimPage extends EspressoBaseTest {
 
