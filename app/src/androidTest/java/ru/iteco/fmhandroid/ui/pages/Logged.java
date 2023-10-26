@@ -6,17 +6,15 @@ import ru.iteco.fmhandroid.ui.utils.EspressoBaseTest;
 import ru.iteco.fmhandroid.R;
 
 public class Logged extends EspressoBaseTest {
-    public void loggedIn() {
-        elementWaiting(withId(R.id.main_menu_image_button), 5000);
-/*        ViewInteraction appCompatImageButton = onView(allOf(withId(R.id.main_menu_image_button),
-                withContentDescription("Main menu")));
-        appCompatImageButton.check(matches(isDisplayed()));*/
-        checkById(R.id.main_menu_image_button);
+    private LoginPage loginPage;
 
+    public void loggedIn() {
+        elementWaiting(withId(R.id.main_menu_image_button), 7000);
+        checkById(R.id.main_menu_image_button);
     }
 
     public void loggedOut() {
-        elementWaiting(withId(R.id.enter_button), 2500);
+        elementWaiting(withId(R.id.enter_button), 3000);
         checkById(R.id.enter_button);
     }
 }

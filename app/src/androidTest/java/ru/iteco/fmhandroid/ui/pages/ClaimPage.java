@@ -15,6 +15,7 @@ import static org.hamcrest.Matchers.allOf;
 import androidx.test.espresso.ViewInteraction;
 
 import ru.iteco.fmhandroid.R;
+import ru.iteco.fmhandroid.ui.data.DataHelper;
 import ru.iteco.fmhandroid.ui.utils.EspressoBaseTest;
 
 public class ClaimPage extends EspressoBaseTest {
@@ -53,6 +54,7 @@ public class ClaimPage extends EspressoBaseTest {
         checkById(R.id.status_label_text_view);
     }
     public void fullInfoAboutClaim() {
+        String generatedString = DataHelper.generateString();
         elementWaiting(withId(R.id.claim_list_recycler_view), 3000);
         clickRecyclerView(R.id.claim_list_recycler_view, 0);
         ViewInteraction appCompatImageButton = onView(
@@ -72,9 +74,9 @@ public class ClaimPage extends EspressoBaseTest {
                                         0),
                                 1),
                         isDisplayed()));
-        textInputEditText3.perform(replaceText("add"), closeSoftKeyboard());
+        textInputEditText3.perform(replaceText(generatedString), closeSoftKeyboard());
         scrollAndClickButton(R.id.save_button);
-        checkText(R.id.comment_description_text_view, R.id.claim_comments_list_recycler_view, "add");
+        checkText(R.id.comment_description_text_view, R.id.claim_comments_list_recycler_view, generatedString);
     }
 
 

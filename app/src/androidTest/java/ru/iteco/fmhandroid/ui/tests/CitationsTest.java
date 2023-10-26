@@ -32,6 +32,7 @@ public class CitationsTest extends CitationPage {
             loginPage.login();
         }
     }
+
     @Test
     @DisplayName("51.Разворачивание карточки цитаты")
     @Description("Раскроется карточка с дополнительным текстом цитаты")

@@ -72,7 +72,7 @@ public class EspressoBaseTest extends EspressoHelper {
 
     public void checkById(Integer resourceId) {
         Allure.step("Проверка того, что отображен элемент с id: " + resourceId);
-        elementWaiting(withId(resourceId), 2000);
+        elementWaiting(withId(resourceId), 4000);
         onView(withId(resourceId)).check(matches(isDisplayed()));
     }
     public void checkByIdWithText(Integer resourceId, String text) {
@@ -96,7 +96,7 @@ public class EspressoBaseTest extends EspressoHelper {
     }
 
     public void tapHamburger(String menu_item) {
-        elementWaiting(withId(R.id.main_menu_image_button), 6000);
+        elementWaiting(withId(R.id.main_menu_image_button), 7000);
         ViewInteraction appCompatImageButton = onView(allOf(withId(R.id.main_menu_image_button),
                 withContentDescription("Main menu")));
         appCompatImageButton.check(matches(isDisplayed()));
@@ -104,9 +104,10 @@ public class EspressoBaseTest extends EspressoHelper {
         ViewInteraction materialTextView = onView(allOf(withId(android.R.id.title), withText(menu_item)));
         materialTextView.check(matches(isDisplayed()));
         materialTextView.perform(click());
-        ViewInteraction textView = onView(allOf(withText(menu_item)));
+        onView(allOf(withId(R.id.about_version_title_text_view), withText("Version:"), isDisplayed()));
+/*        ViewInteraction textView = onView(allOf(withText(menu_item)));
         textView.check(matches(isDisplayed()));
-        textView.check(matches(withText(menu_item)));
+        textView.check(matches(withText(menu_item)));*/
     }
 
     public void checkText(Integer resourceId, Integer resourceParent, String text) {

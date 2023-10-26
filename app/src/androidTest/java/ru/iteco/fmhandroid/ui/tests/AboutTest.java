@@ -35,14 +35,13 @@ public class AboutTest extends AboutPage {
         catch (AssertionError e) {
             loginPage.login();
         }
+        tapHamburgerAbout();
     }
-    String menu_item = "About";
 
     @Test
     @DisplayName("53.Отображение версии")
     @Description("При выборе опции About в главном меню отобразится номер версии приложения")
     public void displayVersion() {
-        tapHamburger(menu_item);
         version();
     }
 
@@ -50,7 +49,6 @@ public class AboutTest extends AboutPage {
     @DisplayName("54.Ссылка на политику конфиденциальности")
     @Description("Откроется веб-страница с политикой конфиденциальности")
     public void openPageWithPrivacyPolicy() {
-        tapHamburger(menu_item);
         privacyPolicy();
     }
 
@@ -58,7 +56,6 @@ public class AboutTest extends AboutPage {
     @DisplayName("55.Ссылка на пользовательское соглашение")
     @Description("Откроется веб-страница с пользовательским соглашением")
     public void openPageWithTermsOfUse() {
-        tapHamburger(menu_item);
         termsOfUse();
     }
 
@@ -66,7 +63,6 @@ public class AboutTest extends AboutPage {
     @DisplayName("56.Отображение держателя авторских прав на приложение")
     @Description("При выборе опции About в главном меню отобразится наименование держателя авторских прав на приложение")
     public void displayCopyright() {
-        tapHamburger(menu_item);
         copyright();
     }
 }

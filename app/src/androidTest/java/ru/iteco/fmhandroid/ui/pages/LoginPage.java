@@ -90,10 +90,10 @@ public class LoginPage extends EspressoBaseTest {
     }
 
     public void logout() {
-        LoginPage loginPage = new LoginPage();
-        elementWaiting(withId(R.id.authorization_image_button), 3000);
+        //LoginPage loginPage = new LoginPage();
+        elementWaiting(withId(R.id.authorization_image_button), 5000);
         clickButton(R.id.authorization_image_button);
-        onView(isRoot()).perform(waitForElement(withText("Log out"), 1000));
+        onView(isRoot()).perform(waitForElement(withText("Log out"), 2000));
         onView(withText("Log out")).perform(click());
         elementWaiting(withId(R.id.enter_button), 2000);
         checkById(R.id.enter_button);

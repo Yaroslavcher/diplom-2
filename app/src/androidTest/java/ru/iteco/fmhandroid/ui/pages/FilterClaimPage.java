@@ -19,6 +19,16 @@ import ru.iteco.fmhandroid.ui.utils.EspressoBaseTest;
 
 public class FilterClaimPage extends EspressoBaseTest {
 
+    public void changeOpen(String text, String oldStatus, String newStatus) {
+        filterScreen(R.id.item_filter_in_progress);
+        checkStatusClaimRecycler(text);
+        changeOpenStatus(oldStatus, newStatus);
+    }
+
+    public void changeInProgress(String oldStatus, String newStatus) {
+        filterScreen(R.id.item_filter_open);
+        changeInProgressStatus(oldStatus, newStatus);
+    }
     public void filterScreen(Integer resourceId) {
         elementWaiting(withId(R.id.filters_material_button), 5000);
         clickFilterButton();
