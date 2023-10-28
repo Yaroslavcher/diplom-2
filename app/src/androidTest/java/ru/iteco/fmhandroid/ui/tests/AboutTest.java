@@ -14,7 +14,6 @@ import ru.iteco.fmhandroid.ui.AppActivity;
 import ru.iteco.fmhandroid.ui.pages.AboutPage;
 import ru.iteco.fmhandroid.ui.pages.Logged;
 import ru.iteco.fmhandroid.ui.pages.LoginPage;
-import ru.iteco.fmhandroid.ui.utils.ScreenshotOnFailureRule;
 
 @RunWith(AllureAndroidJUnit4.class)
 public class AboutTest extends AboutPage {
@@ -24,8 +23,6 @@ public class AboutTest extends AboutPage {
     @Rule
     public ActivityScenarioRule<AppActivity> mActivityScenarioRule =
             new ActivityScenarioRule<>(AppActivity.class);
-    @Rule
-    public ScreenshotOnFailureRule screenshotRule = new ScreenshotOnFailureRule();
 
     @Before
     public void setUp() {
