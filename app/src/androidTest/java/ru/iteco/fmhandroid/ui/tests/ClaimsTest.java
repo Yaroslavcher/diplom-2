@@ -90,11 +90,8 @@ public class ClaimsTest extends EspressoBaseTest {
     @Test
     @DisplayName("19.Добавление комментария к заявке")
     @Description("Появится введенный комментарий внизу карточки заявки с указанием имени, под которым был вход в приложение, текущей даты и времени добавления коментария")
-    public void addComment() {
-/*        checkMenuButton(text);
-        claimPage.fullInfoAboutClaims();
-        claimPage.addComment();*/
-        claimPage.fullInfoAboutClaim();
+    public void shouldAddComment() {
+        claimPage.addComment();
     }
 
     @Test
@@ -102,9 +99,6 @@ public class ClaimsTest extends EspressoBaseTest {
     @Description("Появится комментарий (случайные 10 букв) внизу карточки с указанием имени, под которым был добавлен комментарий, даты и времени добавления коментария")
     public void shouldEditComment() {
         claimPage.editComment();
-
-
-
 
     }
     @Test

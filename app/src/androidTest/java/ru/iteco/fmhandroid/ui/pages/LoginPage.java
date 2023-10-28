@@ -17,36 +17,10 @@ import ru.iteco.fmhandroid.R;
 
 public class LoginPage extends EspressoBaseTest {
 
-
-/*    ViewInteraction loginField = onView(withHint("Login"));
-    ViewInteraction passwordField = onView(withHint("Password"));
-    public static int getLoginInputId() {
-        return R.id.login_text_input_layout;
-    }
-    public static int getPasswordInputId() {
-        return R.id.password_text_input_layout;
-    }
-    public static int getLoginButtonId() {
-        return R.id.enter_button;
-    }
-    public ViewInteraction getLoginField() {
-        return loginField;
-    }
-
-    public ViewInteraction getPasswordField() {
-        return passwordField;
-    }*/
-
     ViewInteraction loginField = onView(withHint("Login"));
     ViewInteraction passwordField = onView(withHint("Password"));
-    public static int getLoginInputId() {
-        return R.id.login_text_input_layout;
-    }
     public ViewInteraction getLoginField() {
         return loginField;
-    }
-    public static int getPasswordInputId() {
-        return R.id.password_text_input_layout;
     }
     public ViewInteraction getPasswordField() {
         return passwordField;
@@ -91,7 +65,6 @@ public class LoginPage extends EspressoBaseTest {
     }
 
     public void logout() {
-        //LoginPage loginPage = new LoginPage();
         elementWaiting(withId(R.id.authorization_image_button), 5000);
         clickButton(R.id.authorization_image_button);
         onView(isRoot()).perform(waitForElement(withText("Log out"), 2000));

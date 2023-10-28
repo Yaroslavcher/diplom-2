@@ -52,25 +52,9 @@ public class ClaimPage extends EspressoBaseTest {
         checkByIdNoWait(R.id.author_label_text_view);
         checkByIdNoWait(R.id.create_data_text_view);
         checkByIdNoWait(R.id.description_material_card_view);
-
-    }
-    public void clickCreateClaim() {
-//        elementWaiting(withId(R.id.add_new_claim_material_button), 10000);
-//        ViewInteraction materialButton = onView(allOf(withId(R.id.add_new_claim_material_button)));
-//        materialButton.check(matches(isDisplayed()));
-//        materialButton.perform(click());
-
     }
 
-    public void inputDate(String date) {
-/*      ViewInteraction textInputEditText = onView(allOf(withId(R.id.date_in_plan_text_input_edit_text)));
-        textInputEditText.check(matches(isDisplayed()));
-        textInputEditText.perform(replaceText(date));*/
-
-    }
     public void createClaim(String title, String date) {
-        //String title = "Новая заявка";
-        //String newTitle = "newTitle";
         String description = "description";
         elementWaiting(withId(R.id.main_menu_image_button), 5000);
         checkById(R.id.add_new_claim_material_button);
@@ -88,12 +72,7 @@ public class ClaimPage extends EspressoBaseTest {
         findRecyclerView(R.id.claim_list_recycler_view, title);
     }
 
-    public void fullInfoAboutClaims(){
-        elementWaiting(withId(R.id.claim_list_recycler_view), 10000);
-        clickRecyclerView(R.id.claim_list_recycler_view, 3);
-        checkById(R.id.status_label_text_view);
-    }
-    public void fullInfoAboutClaim() {
+    public void addComment() {
         String generatedString = DataHelper.generateString();
         elementWaiting(withId(R.id.claim_list_recycler_view), 3000);
         clickRecyclerView(R.id.claim_list_recycler_view, 0);
@@ -128,9 +107,6 @@ public class ClaimPage extends EspressoBaseTest {
         onView(withText(R.string.empty_fields)).check(matches(withText("Fill empty fields")));
     }
 
-
-
-
     public void clickAddCommentInputText(String text) {
         elementWaiting(withId(R.id.claim_comments_list_recycler_view), 8000);
         clickButton(R.id.add_comment_image_button);
@@ -138,25 +114,6 @@ public class ClaimPage extends EspressoBaseTest {
                 withId(R.id.comment_text_input_layout), 0), 1)));
         textInputEditText.perform(replaceText(text), closeSoftKeyboard());
         scrollAndClickButton(R.id.save_button);
-    }
-
-/*    public void addCommentWithoutText() {
-        String text = " ";
-        clickAddCommentInputText(text);
-        clickSaveButton();
-        onView(withText(R.string.toast_empty_field)).inRoot(new EspressoHelper.ToastMatcher())
-                .check(matches(withText("The field cannot be empty.")));*/
-
-
-    public void addComment() {
-        String text = "new comment";
-        clickAddCommentInputText(text);
-        scrollAndClickButton(R.id.save_button);
-        elementWaiting(withId(R.id.claim_comments_list_recycler_view), 8000);
-        onView(withId(R.id.claim_comments_list_recycler_view))
-                .check(matches(hasDescendant(allOf(
-                        withId(R.id.comment_description_text_view),
-                        withText(text)))));
     }
 
     public void editComment() {
@@ -206,5 +163,4 @@ public class ClaimPage extends EspressoBaseTest {
                         withId(R.id.comment_description_text_view),
                         withText(comment)))));
     }
-
 }

@@ -30,9 +30,7 @@ public class CitationPage extends EspressoBaseTest {
                              0)));
      recyclerView.perform(actionOnItemAtPosition(0, click()));
 
-     //checkById(R.id.our_mission_item_description_text_view);
      ViewInteraction textView2 = onView(allOf(withId(R.id.our_mission_item_description_text_view), withText(text)));
-     //elementWaiting(withId(R.id.our_mission_item_description_text_view), 5000);
      textView2.check(matches(withText(text)));
  }
 }

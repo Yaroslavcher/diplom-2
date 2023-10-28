@@ -29,6 +29,7 @@ public class FilterClaimPage extends EspressoBaseTest {
         filterScreen(R.id.item_filter_open);
         changeInProgressStatus(oldStatus, newStatus);
     }
+
     public void filterScreen(Integer resourceId) {
         elementWaiting(withId(R.id.filters_material_button), 5000);
         clickFilterButton();
@@ -36,6 +37,7 @@ public class FilterClaimPage extends EspressoBaseTest {
         scrollAndClickButton(resourceId);
         scrollAndClickButton(R.id.claim_list_filter_ok_material_button);
     }
+
     public void checkStatusClaimRecycler(String text) {
         elementWaiting(withId(R.id.claim_list_recycler_view), 5000);
         clickRecyclerView(R.id.claim_list_recycler_view, 0);
@@ -48,6 +50,7 @@ public class FilterClaimPage extends EspressoBaseTest {
         onView(withText(oldStatus)).perform(click());
         checkByIdWithText(R.id.status_label_text_view, newStatus);
     }
+
     public void changeInProgressStatus(String oldStatus, String newStatus) {
         elementWaiting(withId(R.id.claim_list_recycler_view), 3000);
         ViewInteraction recyclerView = onView(allOf(withId(R.id.claim_list_recycler_view)));
@@ -57,7 +60,6 @@ public class FilterClaimPage extends EspressoBaseTest {
         elementWaiting(withId(R.id.status_label_text_view), 3000);
         textView.check(matches(withText("In progress")));
 
-        //elementWaiting(withId(R.id.claim_comments_list_recycler_view), 3000);
         nestedScrollAndClickButton(R.id.status_processing_image_button);
 
         onView(withText(oldStatus)).perform(click());

@@ -146,7 +146,6 @@ public class EspressoHelper {
                 IBinder windowToken = root.getDecorView().getWindowToken();
                 IBinder appToken = root.getDecorView().getApplicationWindowToken();
                 if (windowToken == appToken) {
-                    //means this window isn't contained by any other windows.
                     return true;
                 }
             }
@@ -407,12 +406,8 @@ public class EspressoHelper {
                 }
                 uiController.loopMainThreadUntilIdle();
             }
-
         };
     }
-
-
-
 }
 
 

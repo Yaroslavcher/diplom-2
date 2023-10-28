@@ -51,7 +51,6 @@ public class NewsPage extends EspressoBaseTest {
         inputCurrentTime();
         inputText(R.id.news_item_description_text_input_edit_text, description);
         scrollAndClickButton(R.id.save_button);
-        //createNewzzTest();
 
         elementWaiting(withId(R.id.filter_news_material_button), 3000);
         ViewInteraction materialButton4 = onView(
@@ -77,61 +76,6 @@ public class NewsPage extends EspressoBaseTest {
                         withParent(withParent(withId(R.id.news_item_material_card_view))),
                         isDisplayed()));
         textView.check(matches(withText(title)));
-    }
-    public void createNewzzTest() {
- /*
-
-        ViewInteraction appCompatImageButton = onView(
-                allOf(withId(R.id.main_menu_image_button), withContentDescription("Main menu"),
-                        childAtPosition(
-                                allOf(withId(R.id.container_custom_app_bar_include_on_fragment_main),
-                                        childAtPosition(
-                                                withClassName(is("android.widget.LinearLayout")),
-                                                0)),
-                                0),
-                        isDisplayed()));
-        appCompatImageButton.perform(click());
-
-        ViewInteraction materialTextView = onView(
-                allOf(withId(android.R.id.title), withText("News"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                0),
-                        isDisplayed()));
-        materialTextView.perform(click());*/
-        elementWaiting(withId(R.id.filter_news_material_button), 3000);
-        ViewInteraction materialButton4 = onView(
-                allOf(withId(R.id.filter_news_material_button)));
-        materialButton4.perform(click());
-
-        ViewInteraction textInputEditText = onView(withId(R.id.news_item_category_text_auto_complete_text_view));
-        textInputEditText.perform(click());
-        textInputEditText.perform(replaceText("Объявление"));
-
-/*        DataInteraction materialTextView2 = onData(anything())
-                .inAdapterView(childAtPosition(
-                        withClassName(is("android.widget.PopupWindow$PopupBackgroundView")),
-                        0))
-                .atPosition(0);
-        materialTextView2.perform(click());*/
-        ViewInteraction textInputEditText2 = onView(allOf(withId(R.id.news_item_publish_date_start_text_input_edit_text)));
-        textInputEditText2.perform(replaceText(getCurrentDate()));
-        ViewInteraction textInputEditText3 = onView(allOf(withId(R.id.news_item_publish_date_end_text_input_edit_text)));
-        textInputEditText3.perform(replaceText(getCurrentDate()));
-
-        elementWaiting(withId(R.id.filter_button), 3000);
-        ViewInteraction materialButton7 = onView(
-                allOf(withId(R.id.filter_button), withText("Filter")));
-        materialButton7.perform(click());
-
-        //elementWaiting(withId(R.id.news_item_title_text_view), 3000);
-        ViewInteraction textView = onView(
-                allOf(withId(R.id.news_item_title_text_view), withText("oslavcher2211"),
-                        withParent(withParent(withId(R.id.news_item_material_card_view))),
-                        isDisplayed()));
-        textView.check(matches(withText("oslavcher2211")));
     }
 
     public static Matcher<View> childAtPosition(
@@ -169,33 +113,7 @@ public class NewsPage extends EspressoBaseTest {
         textInputEditText.perform(click());
         textInputEditText.perform(replaceText(title));
     }
-/*    public void inputCurrentDate() {
-        DataInteraction materialTextView2 = onData(anything())
-                .inAdapterView(childAtPosition(
-                        withClassName(is("android.widget.PopupWindow$PopupBackgroundView")),
-                        0))
-                .atPosition(0);
-        materialTextView2.perform(click());
 
-        ViewInteraction textInputEditText3 = onView(
-                allOf(withId(R.id.news_item_publish_date_text_input_edit_text),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.news_item_create_date_text_input_layout),
-                                        0),
-                                1),
-                        isDisplayed()));
-        textInputEditText3.perform(click());
-
-        ViewInteraction materialButton4 = onView(
-                allOf(withId(android.R.id.button1), withText("OK"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withClassName(is("android.widget.ScrollView")),
-                                        0),
-                                3)));
-        materialButton4.perform(scrollTo(), click());
-    }*/
     public void inputDate(String date) {
         ViewInteraction textInputEditText = onView(allOf(withId(R.id.news_item_publish_date_text_input_edit_text)));
         textInputEditText.perform(replaceText(date));
@@ -220,21 +138,6 @@ public class NewsPage extends EspressoBaseTest {
                                 3)));
         materialButton5.perform(scrollTo(), click());
     }
-    public void findCreatedNews(String title) {
-        elementWaiting(withId(R.id.news_list_recycler_view), 5000);
-        ViewInteraction filterButton = onView(withId(R.id.filter_button));
-        filterButton.perform(click());
-
-
-    }
-/*    public void recyclerNews(String title) {
-        elementWaiting(withId(R.id.news_list_recycler_view), 5000);
-        checkById(R.id.news_list_recycler_view);
-        onView(withId(R.id.news_list_recycler_view))
-                .check(matches(hasDescendant(allOf(
-                        withId(R.id.news_item_title_text_view),
-                        withText(title)))));
-    }*/
 
     public void warnDeleteNews() {
         elementWaiting(withId(R.id.news_list_recycler_view), 8000);
@@ -243,10 +146,10 @@ public class NewsPage extends EspressoBaseTest {
         onView(withText(R.string.irrevocable_deletion))
                 .check(matches(withText("Are you sure you want to permanently delete the document? These changes cannot be reversed in the future.")));
     }
+
     public void deleteNews() {
         int countBeforeDelete = EspressoHelper.getRecyclerViewItemCount();
         warnDeleteNews();
-        //scrollAndClickButton(R.string.fragment_positive_button);
         ViewInteraction materialButton3 = onView(
                 allOf(withId(android.R.id.button1), withText("OK"),
                         childAtPosition(
@@ -259,6 +162,7 @@ public class NewsPage extends EspressoBaseTest {
         int countAfterDelete = EspressoHelper.getRecyclerViewItemCount();
         assertNotEquals(countBeforeDelete, countAfterDelete);
     }
+
     public void notCreateNews() {
         int countBeforeCancel = EspressoHelper.getRecyclerViewItemCount();
         checkById(R.id.add_news_image_view);
