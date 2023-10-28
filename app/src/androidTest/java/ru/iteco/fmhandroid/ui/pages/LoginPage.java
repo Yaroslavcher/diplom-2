@@ -11,6 +11,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 import androidx.test.espresso.ViewInteraction;
 
+import ru.iteco.fmhandroid.ui.data.DataHelper;
 import ru.iteco.fmhandroid.ui.utils.EspressoBaseTest;
 import ru.iteco.fmhandroid.R;
 
@@ -55,9 +56,9 @@ public class LoginPage extends EspressoBaseTest {
     }
     public void login() {
         LoginPage loginPage = new LoginPage();
-        loginPage.getLoginField().perform(typeText("login2"), closeSoftKeyboard());
+        loginPage.getLoginField().perform(typeText(DataHelper.getLogin()), closeSoftKeyboard());
         LoginPage loginPage2 = new LoginPage();
-        loginPage2.getPasswordField().perform(typeText("password2"), closeSoftKeyboard());
+        loginPage2.getPasswordField().perform(typeText(DataHelper.getPassword()), closeSoftKeyboard());
         clickButton(getLoginButtonId());
     }
 
@@ -65,13 +66,13 @@ public class LoginPage extends EspressoBaseTest {
         LoginPage loginPage = new LoginPage();
         loginPage.getLoginField().perform(typeText("inv"), closeSoftKeyboard());
         LoginPage loginPage2 = new LoginPage();
-        loginPage2.getPasswordField().perform(typeText("password2"), closeSoftKeyboard());
+        loginPage2.getPasswordField().perform(typeText(DataHelper.getPassword()), closeSoftKeyboard());
         clickButton(getLoginButtonId());
     }
 
     public void invalidPassword() {
         LoginPage loginPage = new LoginPage();
-        loginPage.getLoginField().perform(typeText("login2"), closeSoftKeyboard());
+        loginPage.getLoginField().perform(typeText(DataHelper.getLogin()), closeSoftKeyboard());
         LoginPage loginPage2 = new LoginPage();
         loginPage2.getPasswordField().perform(typeText("inv"), closeSoftKeyboard());
         clickButton(getLoginButtonId());
@@ -79,13 +80,13 @@ public class LoginPage extends EspressoBaseTest {
 
     public void emptyLogin() {
         LoginPage loginPage = new LoginPage();
-        loginPage.getPasswordField().perform(typeText("password2"), closeSoftKeyboard());
+        loginPage.getPasswordField().perform(typeText(DataHelper.getPassword()), closeSoftKeyboard());
         clickButton(getLoginButtonId());
     }
 
     public void emptyPassword() {
         LoginPage loginPage = new LoginPage();
-        loginPage.getLoginField().perform(typeText("login2"), closeSoftKeyboard());
+        loginPage.getLoginField().perform(typeText(DataHelper.getLogin()), closeSoftKeyboard());
         clickButton(getLoginButtonId());
     }
 
@@ -95,7 +96,7 @@ public class LoginPage extends EspressoBaseTest {
         clickButton(R.id.authorization_image_button);
         onView(isRoot()).perform(waitForElement(withText("Log out"), 2000));
         onView(withText("Log out")).perform(click());
-        elementWaiting(withId(R.id.enter_button), 2000);
+        elementWaiting(withId(R.id.enter_button), 5000);
         checkById(R.id.enter_button);
     }
 }

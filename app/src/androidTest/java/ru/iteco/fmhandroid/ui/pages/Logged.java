@@ -9,12 +9,12 @@ public class Logged extends EspressoBaseTest {
     private LoginPage loginPage;
 
     public void loggedIn() {
-        elementWaiting(withId(R.id.main_menu_image_button), 7000);
+        elementWaiting(withId(R.id.main_menu_image_button), 9000);
         checkById(R.id.main_menu_image_button);
     }
 
     public void loggedOut() {
-        elementWaiting(withId(R.id.enter_button), 3000);
+        elementWaiting(withId(R.id.enter_button), 5000);
         checkById(R.id.enter_button);
     }
 }
