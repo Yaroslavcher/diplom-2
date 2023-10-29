@@ -9,7 +9,6 @@ import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
 import static androidx.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withParent;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
@@ -91,14 +90,12 @@ public class EspressoBaseTest extends EspressoHelper {
 
     public void tapHamburger(String menu_item) {
         elementWaiting(withId(R.id.main_menu_image_button), 7000);
-        ViewInteraction appCompatImageButton = onView(allOf(withId(R.id.main_menu_image_button),
-                withContentDescription("Main menu")));
+        ViewInteraction appCompatImageButton = onView((withId(R.id.main_menu_image_button)));
         appCompatImageButton.check(matches(isDisplayed()));
         appCompatImageButton.perform(click());
         ViewInteraction materialTextView = onView(allOf(withId(android.R.id.title), withText(menu_item)));
         materialTextView.check(matches(isDisplayed()));
         materialTextView.perform(click());
-        onView(allOf(withId(R.id.about_version_title_text_view), withText("Version:"), isDisplayed()));
     }
 
     public void checkText(Integer resourceId, Integer resourceParent, String text) {
@@ -119,9 +116,13 @@ public class EspressoBaseTest extends EspressoHelper {
     }
 
     public void clickFilterButton() {
-        ViewInteraction materialButton = onView(
+/*        ViewInteraction materialButton = onView(
                 allOf(withId(R.id.filters_material_button), withContentDescription("Filter claim list menu button"),
                         childAtPosition(childAtPosition(withId(R.id.container_list_claim_include), 0), 1)));
+        materialButton.check(matches(isDisplayed()));
+        materialButton.perform(click());*/
+
+        ViewInteraction materialButton = onView((withId(R.id.filters_material_button)));
         materialButton.check(matches(isDisplayed()));
         materialButton.perform(click());
     }

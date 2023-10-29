@@ -18,9 +18,11 @@ public class AboutPage extends EspressoBaseTest {
         elementWaiting(withId(R.id.main_menu_image_button), 6000);
         checkById(R.id.main_menu_image_button);
         clickButton(R.id.main_menu_image_button);
+
         ViewInteraction materialTextView = onView(allOf(withId(android.R.id.title), withText("About")));
         materialTextView.check(matches(isDisplayed()));
         materialTextView.perform(click());
+
         onView(allOf(withId(R.id.about_version_title_text_view), withText("Version:"), isDisplayed()));
     }
     public void version() {

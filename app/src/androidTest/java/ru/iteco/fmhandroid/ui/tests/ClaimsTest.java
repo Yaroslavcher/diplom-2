@@ -45,14 +45,14 @@ public class ClaimsTest extends EspressoBaseTest {
     @Test
     @DisplayName("9.Разворачивание/Сворачивание заявок")
     @Description("Заявка развернется и свернется при клике на СТРЕЛКУ в заголовке Claims")
-    public void claimsListMinimize() {
+    public void shouldMinimizeClaimsList() {
         claimPage.minimize();
     }
 
     @Test
     @DisplayName("10.Открытие заявки из списка ALL CLAIMS")
     @Description("Откроется подробная информация о заявке при клике на кнопку ALL CLAIMS и стрелку заявки")
-    public void claimDetailedInfo() {
+    public void shouldOpenDetailedClaim() {
         claimPage.openDetailedClaim();
     }
 
@@ -80,7 +80,7 @@ public class ClaimsTest extends EspressoBaseTest {
     @Test
     @DisplayName("13.Создание заявки с пустой датой на странице \"Заявки\"")
     @Description("Появится сообщение о том, что необходимо заполнить пустые поля, и значок ошибки в поле Дата")
-    public void shouldNotCreateClaimWithEmptyDate() {
+    public void shouldNotCreateClaimWithoutDate() {
         String title = "title";
         String date = "";
         claimPage.createClaim(title, date);
