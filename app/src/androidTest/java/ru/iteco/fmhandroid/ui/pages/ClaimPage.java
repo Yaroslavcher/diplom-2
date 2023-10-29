@@ -6,6 +6,7 @@ import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
 import static androidx.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isNotFocusable;
@@ -75,7 +76,15 @@ public class ClaimPage extends EspressoBaseTest {
     public void addComment() {
         String generatedString = DataHelper.generateString();
         elementWaiting(withId(R.id.claim_list_recycler_view), 3000);
-        clickRecyclerView(R.id.claim_list_recycler_view, 0);
+/*        clickRecyclerView(R.id.claim_list_recycler_view, 0);
+        scrollAndClickButton(R.id.add_comment_image_button);*/
+        ViewInteraction recyclerView = onView(
+                allOf(withId(R.id.claim_list_recycler_view),
+                        childAtPosition(
+                                withId(R.id.all_claims_cards_block_constraint_layout),
+                                4)));
+        recyclerView.perform(actionOnItemAtPosition(0, click()));
+
         ViewInteraction appCompatImageButton = onView(
                 allOf(withId(R.id.add_comment_image_button), withContentDescription("button add comment"),
                         childAtPosition(
