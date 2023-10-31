@@ -22,7 +22,7 @@ import ru.iteco.fmhandroid.R;
 
 public class EspressoBaseTest extends EspressoHelper {
     public static void inputText(Integer resourceId, String inputText) {
-        Allure.step("Ввод строки в поле с id: " + resourceId);
+        Allure.step("Ввод " + inputText + " в поле с id: " + resourceId);
         ViewInteraction textInputEditText = onView(allOf(withId(resourceId)));
         textInputEditText.check(matches(isDisplayed()));
         textInputEditText.perform(replaceText(inputText), closeSoftKeyboard());
@@ -64,7 +64,7 @@ public class EspressoBaseTest extends EspressoHelper {
     }
 
     public void checkById(Integer resourceId) {
-        Allure.step("Проверка того, что отображен элемент с id: " + resourceId);
+        Allure.step("Проверка того, что отображен элемент с id: " + resourceId + "с ожиданием элемента");
         elementWaiting(withId(resourceId), 4000);
         onView(withId(resourceId)).check(matches(isDisplayed()));
     }
@@ -76,12 +76,12 @@ public class EspressoBaseTest extends EspressoHelper {
     }
 
     public void checkByIdNoWait(Integer resourceId) {
-        Allure.step("Проверка того, что отображен элемент с id: " + resourceId);
+        Allure.step("Проверка того, что отображен элемент с id: " + resourceId + "без ожидания элемента");
         onView(withId(resourceId)).check(matches(isDisplayed()));
     }
 
     public void checkByString(int resourceString, String text) {
-        Allure.step("Проверка того, что отображен элемент с текстом: " + text);
+        Allure.step("Проверка того, что отображен элемент: " + resourceString + "с текстом: " + text);
         onView(withText(resourceString)).inRoot(new EspressoHelper.ToastMatcher())
                 .check(matches(isDisplayed()));
         onView(withText(resourceString)).inRoot(new EspressoHelper.ToastMatcher())
@@ -89,6 +89,7 @@ public class EspressoBaseTest extends EspressoHelper {
     }
 
     public void tapHamburger(String menu_item) {
+        Allure.step("Тап по кнопке-гамбургеру в главном меню и выбор пункта: " + menu_item);
         elementWaiting(withId(R.id.main_menu_image_button), 7000);
         ViewInteraction appCompatImageButton = onView((withId(R.id.main_menu_image_button)));
         appCompatImageButton.check(matches(isDisplayed()));
@@ -99,6 +100,7 @@ public class EspressoBaseTest extends EspressoHelper {
     }
 
     public void checkText(Integer resourceId, Integer resourceParent, String text) {
+        Allure.step("Проверка того, что отображен элемент: " + resourceId + " с родительским view: " + resourceParent + "с текстом: " + text);
         ViewInteraction textView = onView(
                 allOf(withId(resourceId), withText(text),
                         withParent(withParent(withId(resourceParent))),
@@ -107,6 +109,7 @@ public class EspressoBaseTest extends EspressoHelper {
     }
 
     public void clickAllOfChild(Integer resourceId, Integer resourceChild, int position, int actionPosition) {
+        Allure.step("Тап по элементу с id: " + resourceId + " в позиции" + actionPosition + " с дочерним id: " + resourceChild + " на позиции " + position);
         ViewInteraction recyclerView = onView(
                 allOf(withId(resourceId),
                         childAtPosition(
@@ -121,7 +124,7 @@ public class EspressoBaseTest extends EspressoHelper {
                         childAtPosition(childAtPosition(withId(R.id.container_list_claim_include), 0), 1)));
         materialButton.check(matches(isDisplayed()));
         materialButton.perform(click());*/
-
+        Allure.step("Тап по кнопке FILTER");
         ViewInteraction materialButton = onView((withId(R.id.filters_material_button)));
         materialButton.check(matches(isDisplayed()));
         materialButton.perform(click());
