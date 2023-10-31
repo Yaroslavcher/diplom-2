@@ -95,6 +95,8 @@ public class EspressoBaseTest extends EspressoHelper {
         appCompatImageButton.check(matches(isDisplayed()));
         appCompatImageButton.perform(click());
         ViewInteraction materialTextView = onView(allOf(withId(android.R.id.title), withText(menu_item)));
+        //ViewInteraction materialTextView = onView(withId(android.R.id.title));
+        //materialTextView.hasXPath("/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ListView/android.widget.LinearLayout[3]/android.widget.LinearLayout");
         materialTextView.check(matches(isDisplayed()));
         materialTextView.perform(click());
     }
